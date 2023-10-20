@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Receber Dados em Tempo Real</title>
+    <title>Gráfico em Tempo Real</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Dados em Tempo Real</h1>
-    <ul id="data-list"></ul>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    
     <script>
-        const socket = io('http://localhost:3000'); // Altere o URL do servidor
-
-        socket.on('data', (data) => {
-            const dataList = document.getElementById('data-list');
-            dataList.innerHTML = '';
-
-            data.forEach((item) => {
-                const li = document.createElement('li');
-                li.textContent = item.value;
-                dataList.appendChild(li);
-            });
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], // Rotular os pontos do gráfico (tempo, por exemplo)
+                datasets: [{
+                    label: 'Dados em Tempo Real',
+                    data: [], // Os dados que você recebe do servidor
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true
+            }
         });
+
+        function updateChart() {
+            $.ajax({
+                url: 'http://localhost/Stardew/servidor.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    chart.data.labels = data.labels;
+                    chart.data.datasets[0].data = data.values;
+                    chart.update();
+                }
+            });
+        }
+
+        // Chama a função para atualizar o gráfico a cada segundo (1000 ms)
+        setInterval(updateChart, 1000);
     </script>
 </body>
 </html>
