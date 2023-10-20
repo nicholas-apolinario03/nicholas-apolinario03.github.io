@@ -7,7 +7,7 @@
 </head>
 <body>
     <canvas id="myChart" width="400" height="200"></canvas>
-    <canvas id="polar-chart"></canvas>
+   <canvas id="wind-direction-chart"></canvas>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -40,13 +40,13 @@
         }
 
         // Chama a função para atualizar o gráfico a cada segundo (1000 ms)
-        setInterval(updateChart, 1000);
-        var ctx = document.getElementById('polar-chart').getContext('2d');
+       // Obtenha uma referência para o elemento canvas
+  var ctx = document.getElementById('wind-direction-chart').getContext('2d');
 
   // Crie os dados iniciais para o gráfico
   var data = {
     datasets: [{
-      data: [0, 0, 0, 0], // Valores iniciais
+      data: [45, 30, 60, 90], // Ângulos representando a direção do vento em graus
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -59,9 +59,9 @@
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)'
       ],
-      label: 'Dados Polares'
+      label: 'Direção do Vento'
     }],
-    labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4']
+    labels: ['Norte', 'Leste', 'Sul', 'Oeste']
   };
 
   // Configure as opções do gráfico polar
@@ -71,29 +71,17 @@
       ticks: {
         beginAtZero: true,
         min: 0,
-        max: 100 // Mude o valor máximo conforme necessário
+        max: 360 // Ângulos em graus (0 a 360)
       }
     }
   };
 
   // Crie o gráfico polar
-  var polarChart = new Chart(ctx, {
+  var windDirectionChart = new Chart(ctx, {
     type: 'polarArea',
     data: data,
     options: options
   });
-
-  // Atualize o gráfico com novos dados
-  function updateChart(newData) {
-    polarChart.data.datasets[0].data = newData;
-    polarChart.update();
-  }
-
-  // Exemplo de atualização de dados a cada 2 segundos
-  setInterval(function() {
-    var newData = [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100];
-    updateChart(newData);
-  }, 2000);
     </script>
 </body>
 </html>
