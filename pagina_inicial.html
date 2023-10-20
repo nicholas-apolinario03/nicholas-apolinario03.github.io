@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receber Dados em Tempo Real</title>
+</head>
+<body>
+    <h1>Dados em Tempo Real</h1>
+    <ul id="data-list"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:3000'); // Altere o URL do servidor
+
+        socket.on('data', (data) => {
+            const dataList = document.getElementById('data-list');
+            dataList.innerHTML = '';
+
+            data.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item.value;
+                dataList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
