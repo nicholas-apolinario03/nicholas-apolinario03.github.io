@@ -41,6 +41,59 @@
 
         // Chama a função para atualizar o gráfico a cada segundo (1000 ms)
         setInterval(updateChart, 1000);
+        var ctx = document.getElementById('polar-chart').getContext('2d');
+
+  // Crie os dados iniciais para o gráfico
+  var data = {
+    datasets: [{
+      data: [0, 0, 0, 0], // Valores iniciais
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)'
+      ],
+      label: 'Dados Polares'
+    }],
+    labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4']
+  };
+
+  // Configure as opções do gráfico polar
+  var options = {
+    responsive: true,
+    scale: {
+      ticks: {
+        beginAtZero: true,
+        min: 0,
+        max: 100 // Mude o valor máximo conforme necessário
+      }
+    }
+  };
+
+  // Crie o gráfico polar
+  var polarChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: data,
+    options: options
+  });
+
+  // Atualize o gráfico com novos dados
+  function updateChart(newData) {
+    polarChart.data.datasets[0].data = newData;
+    polarChart.update();
+  }
+
+  // Exemplo de atualização de dados a cada 2 segundos
+  setInterval(function() {
+    var newData = [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100];
+    updateChart(newData);
+  }, 2000);
     </script>
 </body>
 </html>
