@@ -1,0 +1,138 @@
+
+
+
+/* #container img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 256px;
+  height: 256px;
+  
+  opacity: 0;
+  
+  -webkit-animation: opacity 8s linear infinite;
+  -moz-animation: opacity 8s linear infinite;
+  animation: opacity 8s linear infinite;
+}
+
+@keyframes opacity {
+  5%, 25%  { opacity:1; } 
+  0%, 30%, 100% { opacity:0; }
+}
+
+@-moz-keyframes opacity {
+  5%, 25%  { opacity:1; } 
+  0%, 30%, 100% { opacity:0; }
+}
+
+@-webkit-keyframes opacity {
+  5%, 25%  { opacity:1; }
+  0%, 30%, 100% { opacity:0; }
+}
+
+#container img:nth-child(1) {
+  -webkit-animation-delay: 0;
+  -moz-animation-delay: 0;
+  animation-delay: 0;
+}
+
+#container img:nth-child(2) {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+#container img:nth-child(3) {
+  -webkit-animation-delay: 4s;
+  -moz-animation-delay: 4s;
+  animation-delay: 4s;
+}
+
+#container img:nth-child(4) {
+  -webkit-animation-delay: 6s;
+  -moz-animation-delay: 6s;
+  animation-delay: 6s;
+}
+*/
+*{
+    background-color: rgb(172, 255, 139);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0px;
+}
+
+header{
+    margin-left: 10px;
+}
+header h2{
+    margin-top: 7%;
+    margin-left: 6%;
+    margin-bottom: 0px;
+    font-size: 50px;
+    width: 500px;
+}
+header p{
+    margin-top: 3%;
+    margin-left: 6%;
+    width: 430px;
+    font-size: 21px;
+    color: #181818;
+}
+header a{
+  text-decoration: none;
+}
+header button{
+    background-color: rgb(116, 255, 60);
+    border-radius: 10px;
+    width: 13%;
+    height: 50px;
+    border: none;
+    margin-left: 5%;
+    margin-top: 3%;
+    font-size: 20px;
+}
+header button:hover{
+  transform: scale(1.1);
+  transition: all 0.5s;
+
+}
+ .fazendinha{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    filter: contrast(150%);
+}
+.celeiro{
+  position: absolute;
+    top: 16%;
+    right: 8%;
+    width: 30%;
+    background-color: transparent;
+}
+.junimo2{
+  width: 7%;
+    position: absolute;
+    right: 30%;
+    top: 85%;
+    background-color: transparent;
+}
+.galinha{
+  width: 4%;
+    position: absolute;
+    top: 83%;
+    right: 23%;
+    background-color: transparent;
+}
+.vaquinha{
+  width: 8%;
+    position: absolute;
+    top: 79%;
+    right: 12%;
+    background-color: transparent;
+}
+#container img {
+  position: absolute;
+  left: 35%;
+  width: 12%;
+  }
