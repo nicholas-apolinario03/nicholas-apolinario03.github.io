@@ -7,7 +7,7 @@
 </head>
 <body>
     <canvas id="myChart" width="400" height="200"></canvas>
-   <canvas id="wind-direction-chart"></canvas>
+    <canvas id="wind-speed-chart" width="400" height="200"></canvas>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -22,7 +22,15 @@
                 }]
             },
             options: {
-                responsive: true
+              scale: {
+
+
+      y: {
+        beginAtZero: true,
+        max: 100, // Altere o valor máximo conforme necessário
+      }
+    }
+                
             }
         });
 
@@ -32,22 +40,25 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    chart.data.labels = data.labels;
-                    chart.data.datasets[0].data = data.values;
+                    chart.data.labels = data.labels3;
+                    chart.data.datasets[0].data = data.value3;
                     chart.update();
                 }
             });
         }
 
         // Chama a função para atualizar o gráfico a cada segundo (1000 ms)
-  var ctx = document.getElementById('wind-speed-chart').getContext('2d');
+        setInterval(updateChart, 1000);
+        var ctx = document.getElementById('wind-speed-chart').getContext('2d');
 
-  // Crie os dados iniciais para o gráfico
-  var data = {
-    labels: ['Norte', 'Leste', 'Sul', 'Oeste'], // Direções do vento
+// Crie o gráfico radar com dados iniciais vazios
+var windSpeedChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
     datasets: [{
       label: 'Velocidade do Vento (m/s)',
-      data: [10, 15, 5, 20], // Velocidade do vento em cada direção
+      data: [],
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       borderColor: 'rgba(75, 192, 192, 1)',
       pointBackgroundColor: 'rgba(75, 192, 192, 1)',
@@ -55,10 +66,8 @@
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
     }]
-  };
-
-  // Configure as opções do gráfico radar
-  var options = {
+  },
+  options: {
     scale: {
       angleLines: {
         display: false
@@ -69,14 +78,24 @@
         max: 30 // Altere o valor máximo conforme necessário
       }
     }
-  };
+  }
+});
 
-  // Crie o gráfico radar
-  var windSpeedChart = new Chart(ctx, {
-    type: 'radar',
-    data: data,
-    options: options
-  });
+// Função para atualizar o gráfico com dados do servidor
+function updateChartWithData() {
+            $.ajax({
+                url: 'https://nodemongo-sigma.vercel.app/getData',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+      windSpeedChart.data.datasets[0].data = data.value8;
+      windSpeedChart.update();
+                }
+    });
+}
+
+// Atualize o gráfico com dados do servidor periodicamente (por exemplo, a cada 10 segundos)
+setInterval(updateChartWithData, 10000); // 10 segundos
     </script>
 </body>
 </html>
