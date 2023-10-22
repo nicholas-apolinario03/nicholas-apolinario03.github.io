@@ -11,6 +11,7 @@
   <canvas id="myChart" width="400" height="200"></canvas>
   <canvas id="myChart2" width="400" height="200"></canvas>
   <canvas id="myChart3" width="400" height="200"></canvas>
+  <canvas id="myChart4" width="400" height="200"></canvas>
   <canvas id="wind-speed-chart" width="400" height="200"></canvas>
   <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -22,13 +23,13 @@
         datasets: [{
           label: 'Temperatura do Ar (°C)',
           data: [], 
-          borderColor: 'blue',
+          borderColor: 'red',
             yAxisID: 'temp',
           fill: false
         },{
            label: 'Umidade do Ar (%)',
           data: [], 
-          borderColor: 'green',
+          borderColor: 'blue',
             yAxisID: 'humi',
           fill: false
         }]
@@ -62,13 +63,13 @@
         datasets: [{
           label: 'Temperatura do Solo (°C)',
           data: [], 
-          borderColor: 'blue',
+          borderColor: 'red',
             yAxisID: 'temp',
           fill: false
         },{
            label: 'Umidade do Solo (%)',
           data: [], 
-          borderColor: 'green',
+          borderColor: 'blue',
             yAxisID: 'humi',
           fill: false
         }]
@@ -102,6 +103,32 @@
         datasets: [{
           label: 'Luminosidade ',
           data: [], 
+          borderColor: 'yellow',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+         y: {
+              
+                min: 0,
+                max: 7000
+            },
+        }
+
+      }
+    });
+    var ctx4 = document.getElementById('myChart4').getContext('2d');
+    var chartpress = new Chart(ctx4, {
+      type: 'line',
+      data: {
+
+        labels: [], 
+        datasets: [{
+          label: 'Pressão do Ar ',
+          data: [], 
           borderColor: 'blue',
           fill: false
         }]
@@ -113,7 +140,7 @@
          y: {
               
                 min: 0,
-                max: 69000
+                max: 8849
             },
         }
 
@@ -164,11 +191,14 @@
           chart2.data.datasets[1].data = data.values6;
           chartlum.data.labels = data.labels1;
           chartlum.data.datasets[0].data = data.values1;
+          chartpress.data.labels = data.labels2;
+          chartpress.data.datasets[0].data = data.values2;
           windSpeedChart.data.datasets[0].data = data.value8;
 
           chart.update();
           chart2.update();
           chartlum.update();
+          chartpress.update();
           windSpeedChart.update();
         }
       });
