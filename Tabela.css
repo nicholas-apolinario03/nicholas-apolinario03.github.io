@@ -1,7 +1,11 @@
 body {
     margin: 0;
     padding: 0;
-  background-color: rgb(215 215 215);
+    background-image: url(img/backgroud.jpg) ;
+    background-size:100% 100% ;
+    background-repeat:no-repeat ;
+    height: 100%;
+    min-height: 625px;
 }
 
 .navbar {
@@ -12,17 +16,19 @@ body {
     align-items: center;
     background:   #f0f0f0;
     width: 100%;
+    box-shadow: 10px black ;
 }
 .logo{
+    background-color: #006400ab;
     background-size: contain;
-    width: 200px;
-    height: 60px;
+    width: 140px;
+    height: 100%;
     float: left;
-    margin-left: 50px;
-    margin-bottom: 20px;
+    margin-left: 60px;
+    text-align: center;
 }
 .logo h1 {
-    color: #333;
+    color: #ffff;
 }
 .menu{
     position: absolute;
@@ -41,3 +47,72 @@ body {
     color: #6ab04c;
 
 }
+.btn{
+    display: none;
+    position: absolute;
+    right: 20px;
+}
+.btn:hover > span{
+    background: #6ab04c ;
+}
+.btn span{
+    display: block;
+    margin: 6px;
+    width: 40px;
+    height: 3px;
+    background: #333;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+ 
+@media (max-width: 700px){
+    .navbar{
+        overflow: visible;
+    }
+    .menu{
+        width: 100%;
+        right: 0;
+        top: 80px;
+        background: #e1dfdf;
+        overflow: hidden;
+        max-height: 0;
+    }
+    .menu a{
+        display: block;
+        text-align: center;
+        padding: 10px;
+        margin: 0;
+        
+    }
+    .btn{
+        display: block;
+        cursor: pointer;
+    }
+    .show{
+        max-height: 500px;
+    }
+    
+}
+@media screen and (max-width: 600px) {
+    th {
+      text-align: left;
+      width: 100%;
+    }
+    tr {
+      margin-bottom: 10px;
+    }
+    td {
+      text-align: left;
+      width: 100%;
+    }
+  }

@@ -3,10 +3,13 @@
 <head>
   <title>Tabela de Dados em Tempo Real</title>
   <link rel="stylesheet" href="Tabela.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="navbar">
-        <div class="logo"></div>
+      <div class="logo">
+        <h1>Stardew</h1>
+    </div>
     
         <a class="btn">
           <span></span>
@@ -16,6 +19,7 @@
         <div class="menu">
           <a href="pagina_inicial.html">Home</a>
           <a href="Graficos.html">Graficos</a>
+          <a href="Tabela.html">Tabela</a>
         </div>
    </div> 
   <table border="1">
@@ -40,39 +44,53 @@
   </table>
 
   <script>
-    function fetchData() {
-      fetch('https://nodemongo-sigma.vercel.app/getData')
-        .then(response => response.json())
-        .then(data => {
-          // Lide com os dados JSON recebidos do servidor
-          const dataTable = document.getElementById('data-table');
-          dataTable.innerHTML = ''; // Limpe os dados antigos
+   function fetchData() {
+  fetch('https://nodemongo-sigma.vercel.app/getData')
+    .then(response => response.json())
+    .then(data => {
+      const dataTable = document.getElementById('data-table');
 
-          for (let i = 0; i < data.labels1.length; i++) {
-            const row = document.createElement('tr');
-            const timeCell = document.createElement('td');
-            timeCell.textContent = data.labels1[i];
-            row.appendChild(timeCell);
+      // Verifique se existem pelo menos 10 entradas de dados
+      if (data.labels1.length >= 20) {
+        dataTable.innerHTML = ''; // Limpe os dados antigos
 
-            for (let j = 1; j <= 9; j++) {
-              const cell = document.createElement('td');
-              cell.textContent = data['values' + j][i];
-              row.appendChild(cell);
-            }
+        // Pegue apenas as 10 últimas entradas
+        const lastEntries = data.labels1.slice(-20);
 
-            dataTable.appendChild(row);
+        for (let i = lastEntries.length - 1; i >= 0; i--) {
+          const row = document.createElement('tr');
+          const timeCell = document.createElement('td');
+          timeCell.textContent = lastEntries[i];
+          row.appendChild(timeCell);
+
+          for (let j = 1; j <= 9; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = data['values' + j][data.labels1.indexOf(lastEntries[i])];
+            row.appendChild(cell);
           }
-        })
-        .catch(error => {
-          console.error('Erro ao buscar dados:', error);
-        });
-    }
 
-    // Atualize os dados a cada 5 segundos (ou o intervalo desejado)
-    setInterval(fetchData, 5000);
+          dataTable.appendChild(row);
+        }
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao buscar dados:', error);
+    });
+}
 
-    // Chame a função fetchData para carregar os dados inicialmente
-    fetchData();
+// Atualize os dados a cada 10 segundos
+setInterval(fetchData, 10000);
+
+// Chame a função fetchData para carregar os dados inicialmente
+fetchData();
+
+  </script>
+     <script type="text/javascript">
+
+      $(".btn").on("click", function () {
+          $('.menu').toggleClass("show");
+
+      });
   </script>
 </body>
 </html>
