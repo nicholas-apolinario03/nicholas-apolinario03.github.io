@@ -1,102 +1,182 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Gráfico em Tempo Real</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Gráfico em Tempo Real</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <canvas id="myChart" width="400" height="200"></canvas>
-    <canvas id="wind-speed-chart" width="400" height="200"></canvas>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [], // Rotular os pontos do gráfico (tempo, por exemplo)
-                datasets: [{
-                    label: 'Dados em Tempo Real',
-                    data: [], // Os dados que você recebe do servidor
-                    borderColor: 'blue',
-                    fill: false
-                }]
+  <canvas id="myChart" width="400" height="200"></canvas>
+  <canvas id="myChart2" width="400" height="200"></canvas>
+  <canvas id="myChart3" width="400" height="200"></canvas>
+  <canvas id="wind-speed-chart" width="400" height="200"></canvas>
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+
+        labels: [], 
+        datasets: [{
+          label: 'Temperatura do Ar (°C)',
+          data: [], 
+          borderColor: 'blue',
+            yAxisID: 'temp',
+          fill: false
+        },{
+           label: 'Umidade do Ar (%)',
+          data: [], 
+          borderColor: 'green',
+            yAxisID: 'humi',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+         temp: {
+                position: 'left',
+                beginAtZero: true,
+                min: 0,
+                max: 50
             },
-            options: {
-              scale: {
-
-
-      y: {
-        beginAtZero: true,
-        min: 0,
-        max: 30, // Altere o valor máximo conforme necessário
-      }
-    }
-                
+            humi: {
+                position: 'right',
+                beginAtZero: true,
+                min: 0,
+                max: 100
             }
-        });
-
-        function updateChart() {
-            $.ajax({
-                url: 'https://nodemongo-sigma.vercel.app/getData',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    chart.data.labels = data.labels3;
-                    chart.data.datasets[0].data = data.values3;
-                    chart.update();
-                }
-            });
         }
 
-        // Chama a função para atualizar o gráfico a cada segundo (1000 ms)
-        setInterval(updateChart, 1000);
-        var ctx = document.getElementById('wind-speed-chart').getContext('2d');
-
-// Crie o gráfico radar com dados iniciais vazios
-var windSpeedChart = new Chart(ctx, {
-  type: 'radar',
-  data: {
-    labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
-    datasets: [{
-      label: 'Velocidade do Vento (m/s)',
-      data: [],
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
-    }]
-  },
-  options: {
-    scale: {
-      angleLines: {
-        display: false
-      },
-      ticks: {
-        beginAtZero: true,
-        min: 0,
-        max: 30 // Altere o valor máximo conforme necessário
       }
-    }
-  }
-});
-
-// Função para atualizar o gráfico com dados do servidor
-function updateChartWithData() {
-            $.ajax({
-                url: 'https://nodemongo-sigma.vercel.app/getData',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-      windSpeedChart.data.datasets[0].data = data.value8;
-      windSpeedChart.update();
-                }
     });
-}
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+      type: 'line',
+      data: {
 
-// Atualize o gráfico com dados do servidor periodicamente (por exemplo, a cada 10 segundos)
-setInterval(updateChartWithData, 10000); // 10 segundos
-    </script>
+        labels: [], 
+        datasets: [{
+          label: 'Temperatura do Solo (°C)',
+          data: [], 
+          borderColor: 'blue',
+            yAxisID: 'temp',
+          fill: false
+        },{
+           label: 'Umidade do Solo (%)',
+          data: [], 
+          borderColor: 'green',
+            yAxisID: 'humi',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+         temp: {
+                position: 'left',
+                beginAtZero: true,
+                min: 0,
+                max: 50
+            },
+            humi: {
+                position: 'right',
+                beginAtZero: true,
+                min: 0,
+                max: 100
+            }
+        }
+
+      }
+    });
+    var ctx3 = document.getElementById('myChart3').getContext('2d');
+    var chartlum = new Chart(ctx3, {
+      type: 'line',
+      data: {
+
+        labels: [], 
+        datasets: [{
+          label: 'Luminosidade ',
+          data: [], 
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+         y: {
+              
+                min: 0,
+                max: 69000
+            },
+        }
+
+      }
+    });
+  
+    var ctx4 = document.getElementById('wind-speed-chart').getContext('2d');
+    var windSpeedChart = new Chart(ctx4, {
+      type: 'radar',
+      data: {
+        labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
+        datasets: [{
+          label: 'Velocidade do Vento (m/s)',
+          data: [],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+        }]
+      },
+      options: {
+        scale: {
+          angleLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 30 
+          }
+        }
+      }
+    });
+
+    function updateWithData() {
+      $.ajax({
+        url: 'http://localhost:8080/getData',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          chart.data.labels = data.labels3;
+          chart.data.datasets[0].data = data.values3;
+          chart.data.datasets[1].data = data.values5;
+          chart2.data.labels = data.labels4;
+          chart2.data.datasets[0].data = data.values4;
+          chart2.data.datasets[1].data = data.values6;
+          chartlum.data.labels = data.labels1;
+          chartlum.data.datasets[0].data = data.values1;
+          windSpeedChart.data.datasets[0].data = data.value8;
+
+          chart.update();
+          chart2.update();
+          chartlum.update();
+          windSpeedChart.update();
+        }
+      });
+    }
+
+   
+    setInterval(updateWithData, 10000); 
+  </script>
 </body>
+
 </html>
