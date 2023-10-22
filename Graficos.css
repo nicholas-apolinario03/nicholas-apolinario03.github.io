@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+  background-color: rgb(215 215 215);
+}
+
+.navbar {
+    height: 80px;
+    overflow: hidden;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background:   #f0f0f0;
+    width: 100%;
+}
+.logo{
+    background-size: contain;
+    width: 200px;
+    height: 60px;
+    float: left;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+.logo h1 {
+    color: #333;
+}
+.menu{
+    position: absolute;
+    right: 55px;
+}
+.menu a{
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 20px;
+    transition: color 0.3s;
+    text-transform: uppercase;
+
+}
+.menu a:hover{
+    color: #6ab04c;
+
+}
+.grafic_cont{
+    width: 36em;
+    height: 20em;
+    display: inline-block;
+    margin: 3em;
+    border-radius: 10px;
+    background-color: #fff;
+
+}
+.grafic_wind{
+    width: 36em;
+    height: 36em;
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%);
+    position: relative;
+    margin-bottom: 3em;
+}

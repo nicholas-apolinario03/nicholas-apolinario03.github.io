@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gráfico em Tempo Real</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="Graficos.css">
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="logo"><h1>Stardew</h1></div>
+
+    <a class="btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <div class="menu">
+      <a href="pagina_inicial.html">Home</a>
+      <a href="Tabela.html">Tabelas</a>
+    </div>
+
+  </div>
+  <div class="grafic_cont">
+    <canvas id="myChart" class="grafic"></canvas>
+  </div>
+  <div class="grafic_cont">
+    <canvas id="myChart2" class="grafic"></canvas>
+  </div>
+  <div class="grafic_cont">
+    <canvas id="myChart3" class="grafic"></canvas>
+  </div>
+  <div class="grafic_cont">
+    <canvas id="myChart4" class="grafic"></canvas>
+  </div>
+  <div class="grafic_wind">
+  <canvas id="wind-speed-chart"></canvas>
+  </div>
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+
+        labels: [],
+        datasets: [{
+          label: 'Temperatura do Ar (°C)',
+          data: [],
+          borderColor: 'red',
+          yAxisID: 'temp',
+          fill: false
+        }, {
+          label: 'Umidade do Ar (%)',
+          data: [],
+          borderColor: 'blue',
+          yAxisID: 'humi',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scale: {
+
+
+          temp: {
+            position: 'left',
+            beginAtZero: true,
+            min: 0,
+            max: 50
+          },
+          humi: {
+            position: 'right',
+            beginAtZero: true,
+            min: 0,
+            max: 100
+          }
+        }
+
+      }
+    });
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+      type: 'line',
+      data: {
+
+        labels: [],
+        datasets: [{
+          label: 'Temperatura do Solo (°C)',
+          data: [],
+          borderColor: 'red',
+          yAxisID: 'temp',
+          fill: false
+        }, {
+          label: 'Umidade do Solo (%)',
+          data: [],
+          borderColor: 'blue',
+          yAxisID: 'humi',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+          temp: {
+            position: 'left',
+            beginAtZero: true,
+            min: 0,
+            max: 50
+          },
+          humi: {
+            position: 'right',
+            beginAtZero: true,
+            min: 0,
+            max: 100
+          }
+        }
+
+      }
+    });
+    var ctx3 = document.getElementById('myChart3').getContext('2d');
+    var chartlum = new Chart(ctx3, {
+      type: 'line',
+      data: {
+
+        labels: [],
+        datasets: [{
+          label: 'Luminosidade ',
+          data: [],
+          borderColor: 'yellow',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+          y: {
+
+            min: 0,
+            max: 70000
+          },
+        }
+
+      }
+    });
+    var ctx4 = document.getElementById('myChart4').getContext('2d');
+    var chartpress = new Chart(ctx4, {
+      type: 'line',
+      data: {
+
+        labels: [],
+        datasets: [{
+          label: 'Pressão do Ar ',
+          data: [],
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          fill: true
+        }]
+      },
+      options: {
+        scale: {
+
+
+          y: {
+
+            min: 0,
+            max: 101325
+          },
+        }
+
+      }
+    });
+
+    var ctx5 = document.getElementById('wind-speed-chart').getContext('2d');
+    var windSpeedChart = new Chart(ctx5, {
+      type: 'radar',
+      data: {
+        labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
+        datasets: [{
+          label: 'Velocidade do Vento (m/s)',
+          data: [],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+        }]
+      },
+      options: {
+        scale: {
+          angleLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 30
+          }
+        }
+      }
+    });
+
+    function updateWithData() {
+      $.ajax({
+        url: 'https://nodemongo-sigma.vercel.app/getData',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          chart.data.labels = data.labels3;
+          chart.data.datasets[0].data = data.values3;
+          chart.data.datasets[1].data = data.values5;
+          chart2.data.labels = data.labels4;
+          chart2.data.datasets[0].data = data.values4;
+          chart2.data.datasets[1].data = data.values6;
+          chartlum.data.labels = data.labels1;
+          chartlum.data.datasets[0].data = data.values1;
+          chartpress.data.labels = data.labels2;
+          chartpress.data.datasets[0].data = data.values2;
+          windSpeedChart.data.datasets[0].data = data.value8;
+
+          chart.update();
+          chart2.update();
+          chartlum.update();
+          chartpress.update();
+          windSpeedChart.update();
+        }
+      });
+    }
+
+
+    setInterval(updateWithData, 10000); 
+  </script>
+</body>
+
+</html>

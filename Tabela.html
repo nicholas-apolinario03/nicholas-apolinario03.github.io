@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabela de Dados em Tempo Real</title>
+  <link rel="stylesheet" href="Tabela.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"></div>
+    
+        <a class="btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        <div class="menu">
+          <a href="pagina_inicial.html">Home</a>
+          <a href="Graficos.html">Graficos</a>
+        </div>
+   </div> 
+  <table border="1">
+    <thead>
+      <tr>
+       
+        <th>Tempo</th>
+        <th>Luz Ambiente</th>
+        <th>Pressao</th>
+        <th>Temperatura Ar</th>
+        <th>Temperatura Solo</th>
+        <th>Umidade Ar</th>
+        <th>Umidade Solo</th>
+        <th>Vento Direcao</th>
+        <th>Vento Velocidade</th>
+        <th>Height</th>
+      </tr>
+    </thead>
+    <tbody id="data-table">
+      <!-- Os dados serão inseridos aqui -->
+    </tbody>
+  </table>
+
+  <script>
+    function fetchData() {
+      fetch('https://nodemongo-sigma.vercel.app/getData')
+        .then(response => response.json())
+        .then(data => {
+          // Lide com os dados JSON recebidos do servidor
+          const dataTable = document.getElementById('data-table');
+          dataTable.innerHTML = ''; // Limpe os dados antigos
+
+          for (let i = 0; i < data.labels1.length; i++) {
+            const row = document.createElement('tr');
+            const timeCell = document.createElement('td');
+            timeCell.textContent = data.labels1[i];
+            row.appendChild(timeCell);
+
+            for (let j = 1; j <= 9; j++) {
+              const cell = document.createElement('td');
+              cell.textContent = data['values' + j][i];
+              row.appendChild(cell);
+            }
+
+            dataTable.appendChild(row);
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados:', error);
+        });
+    }
+
+    // Atualize os dados a cada 5 segundos (ou o intervalo desejado)
+    setInterval(fetchData, 5000);
+
+    // Chame a função fetchData para carregar os dados inicialmente
+    fetchData();
+  </script>
+</body>
+</html>
