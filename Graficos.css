@@ -42,20 +42,16 @@ body {
 
 }
 .grafic_cont {
-    width: 100%; 
-    max-width: 36em; 
-    height: 20em;
+    width: 42%; 
     display: inline-block;
-    margin: 3em;
+    margin: 2%;
     border-radius: 10px;
     background-color: #fff;
 }
 .grafic_wind {
-    width: 100%; 
-    max-width: 36em; 
-    height: 36em;
+    width: 42%; 
     display: inline-block;
-    margin: 3em auto; 
+    margin: 2%; 
     border-radius: 10px;
     background-color: #fff;
 }
