@@ -1,60 +1,4 @@
-
-
-
-/* #container img {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 256px;
-  height: 256px;
-  
-  opacity: 0;
-  
-  -webkit-animation: opacity 8s linear infinite;
-  -moz-animation: opacity 8s linear infinite;
-  animation: opacity 8s linear infinite;
-}
-
-@keyframes opacity {
-  5%, 25%  { opacity:1; } 
-  0%, 30%, 100% { opacity:0; }
-}
-
-@-moz-keyframes opacity {
-  5%, 25%  { opacity:1; } 
-  0%, 30%, 100% { opacity:0; }
-}
-
-@-webkit-keyframes opacity {
-  5%, 25%  { opacity:1; }
-  0%, 30%, 100% { opacity:0; }
-}
-
-#container img:nth-child(1) {
-  -webkit-animation-delay: 0;
-  -moz-animation-delay: 0;
-  animation-delay: 0;
-}
-
-#container img:nth-child(2) {
-  -webkit-animation-delay: 2s;
-  -moz-animation-delay: 2s;
-  animation-delay: 2s;
-}
-
-#container img:nth-child(3) {
-  -webkit-animation-delay: 4s;
-  -moz-animation-delay: 4s;
-  animation-delay: 4s;
-}
-
-#container img:nth-child(4) {
-  -webkit-animation-delay: 6s;
-  -moz-animation-delay: 6s;
-  animation-delay: 6s;
-}
-*/
-*{
+ *{
     background-color: rgb(172, 255, 139);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0px;
@@ -135,4 +79,5 @@ header button:hover{
   position: absolute;
   left: 35%;
   width: 12%;
+  bottom: 10%;
   }
