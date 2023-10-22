@@ -41,21 +41,32 @@ body {
     color: #6ab04c;
 
 }
-.grafic_cont{
-    width: 36em;
+.grafic_cont {
+    width: 100%; 
+    max-width: 36em; 
     height: 20em;
     display: inline-block;
     margin: 3em;
     border-radius: 10px;
     background-color: #fff;
-
 }
-.grafic_wind{
-    width: 36em;
+.grafic_wind {
+    width: 100%; 
+    max-width: 36em; 
     height: 36em;
     display: inline-block;
-    left: 50%;
-    transform: translate(-50%);
-    position: relative;
-    margin-bottom: 3em;
+    margin: 3em auto; 
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .grafic_cont {
+        width: 90%;
+        max-width: 100%;
+    }
+    .grafic_wind {
+        width: 90%; 
+        max-width: 100%;
+    }
 }
