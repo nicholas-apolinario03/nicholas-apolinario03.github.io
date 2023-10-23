@@ -233,6 +233,9 @@ body {
     .section_img {
      margin-right: 0px;
     }
+    .section_img img {
+       width:100%
+}
 
     .section_b {
         width: 100%;
