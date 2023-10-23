@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <title>Gráfico</title>
-  <meta charset="UTF-8">
+  <title>Gráfico em Tempo Real</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,7 +13,9 @@
 
 <body>
   <div class="navbar">
-    <div class="logo"><h1>Stardew</h1></div>
+    <div class="logo">
+      <h1>Stardew</h1>
+    </div>
 
     <a class="btn">
       <span></span>
@@ -28,26 +30,30 @@
 
   </div>
   <center>
-  <div class="grafic_cont">
-    <canvas id="myChart" class="grafic"></canvas>
-  </div>
-  <div class="grafic_cont">
-    <canvas id="myChart2" class="grafic"></canvas>
-  </div>
-  <div class="grafic_cont">
-    <canvas id="myChart3" class="grafic"></canvas>
-  </div>
-  <div class="grafic_cont">
-    <canvas id="myChart4" class="grafic"></canvas>
-  </div>
-  <div class="grafic_cont">
-    <canvas id="myChart5" class="grafic"></canvas>
-  </div>
-  <div class="grafic_wind">
-  <canvas id="wind-speed-chart"></canvas>
-  </div>
-</center>
+    <div class="grafic_cont">
+      <canvas id="myChart" class="grafic"></canvas>
+    </div>
+    <div class="grafic_cont">
+      <canvas id="myChart2" class="grafic"></canvas>
+    </div>
+    <div class="grafic_cont">
+      <canvas id="myChart3" class="grafic"></canvas>
+    </div>
+    <div class="grafic_cont">
+      <canvas id="myChart4" class="grafic"></canvas>
+    </div>
+    <div class="grafic_cont">
+      <canvas id="myChart5" class="grafic"></canvas>
+    </div>
+    <div class="grafic_wind">
+      <canvas id="wind-speed-chart"></canvas>
+    </div>
+  </center>
   <script>
+    let dir_norte = 0;
+    let dir_sul = 0;
+    let dir_leste = 0;
+    let dir_oeste = 0;
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
       type: 'line',
@@ -215,8 +221,8 @@
       data: {
         labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
         datasets: [{
-          label: 'Velocidade do Vento (m/s)',
-          data: [],
+          label: 'Direção do Vento (m/s)',
+          data: [dir_norte, dir_sul, dir_leste, dir_oeste],
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           pointBackgroundColor: 'rgba(75, 192, 192, 1)',
@@ -247,41 +253,46 @@
         success: function (data) {
           const maxDataPoints = 20;
 
-if (data.values3) {
-  chart.data.labels = data.labels3.slice(-maxDataPoints);
-  chart.data.datasets[0].data = data.values3.slice(-maxDataPoints);
-  chart.data.datasets[1].data = data.values5.slice(-maxDataPoints);
-}
+          if (data.values3) {
+            chart.data.labels = data.labels3.slice(-maxDataPoints);
+            chart.data.datasets[0].data = data.values3.slice(-maxDataPoints);
+            chart.data.datasets[1].data = data.values5.slice(-maxDataPoints);
+          }
 
-if (data.values4) {
-  chart2.data.labels = data.labels4.slice(-maxDataPoints);
-  chart2.data.datasets[0].data = data.values4.slice(-maxDataPoints);
-  chart2.data.datasets[1].data = data.values6.slice(-maxDataPoints);
-}
+          if (data.values4) {
+            chart2.data.labels = data.labels4.slice(-maxDataPoints);
+            chart2.data.datasets[0].data = data.values4.slice(-maxDataPoints);
+            chart2.data.datasets[1].data = data.values6.slice(-maxDataPoints);
+          }
 
-if (data.values1) {
-  chartlum.data.labels = data.labels1.slice(-maxDataPoints);
-  chartlum.data.datasets[0].data = data.values1.slice(-maxDataPoints);
-}
+          if (data.values1) {
+            chartlum.data.labels = data.labels1.slice(-maxDataPoints);
+            chartlum.data.datasets[0].data = data.values1.slice(-maxDataPoints);
+          }
 
-if (data.values2) {
-  chartpress.data.labels = data.labels2.slice(-maxDataPoints);
-  chartpress.data.datasets[0].data = data.values2.slice(-maxDataPoints);
-}
-if (data.values8) {
-  chartvel.data.labels = data.labels8.slice(-maxDataPoints);
-  chartvel.data.datasets[0].data = data.values8.slice(-maxDataPoints);
-}
+          if (data.values2) {
+            chartpress.data.labels = data.labels2.slice(-maxDataPoints);
+            chartpress.data.datasets[0].data = data.values2.slice(-maxDataPoints);
+          }
+          if (data.values8) {
+            chartvel.data.labels = data.labels8.slice(-maxDataPoints);
+            chartvel.data.datasets[0].data = data.values8.slice(-maxDataPoints);
+          }
+          const strings = data.values7;
+          strings.forEach(string => {
+            const numeros = string.split(',').map(Number);
+            dir_norte += numeros[0];
+            dir_sul += numeros[1];
+            dir_leste += numeros[2];
+            dir_oeste += numeros[3];
+          });
 
-if (data.values7) {
-  windSpeedChart.data.datasets[0].data = data.values7.slice(-maxDataPoints);
-}
 
           chart.update();
           chart2.update();
           chartlum.update();
-          chartpress.update();
           chartvel.update();
+          chartpress.update();
           windSpeedChart.update();
         }
       });
@@ -290,12 +301,12 @@ if (data.values7) {
 
     setInterval(updateWithData, 10000); 
   </script>
-     <script type="text/javascript">
+  <script type="text/javascript">
 
-      $(".btn").on("click", function () {
-          $('.menu').toggleClass("show");
+    $(".btn").on("click", function () {
+      $('.menu').toggleClass("show");
 
-      });
+    });
   </script>
 </body>
 
