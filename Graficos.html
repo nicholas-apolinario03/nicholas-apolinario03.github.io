@@ -38,6 +38,9 @@
   <div class="grafic_cont">
     <canvas id="myChart4" class="grafic"></canvas>
   </div>
+  <div class="grafic_cont">
+    <canvas id="myChart5" class="grafic"></canvas>
+  </div>
   <div class="grafic_wind">
   <canvas id="wind-speed-chart"></canvas>
   </div>
@@ -144,7 +147,7 @@
           y: {
 
             min: 0,
-            max: 3600
+            max: 70000
           },
         }
 
@@ -177,9 +180,35 @@
 
       }
     });
+    var ctx5 = document.getElementById('myChart5').getContext('2d');
+    var chartvel = new Chart(ctx5, {
+      type: 'line',
+      data: {
 
-    var ctx5 = document.getElementById('wind-speed-chart').getContext('2d');
-    var windSpeedChart = new Chart(ctx5, {
+        labels: [],
+        datasets: [{
+          label: 'Velocidade do Vento (Km/h) ',
+          data: [],
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          fill: false
+        }]
+      },
+      options: {
+        scale: {
+
+
+          y: {
+
+            min: 0,
+            max: 120
+          },
+        }
+
+      }
+    });
+    var ctx6 = document.getElementById('wind-speed-chart').getContext('2d');
+    var windSpeedChart = new Chart(ctx6, {
       type: 'radar',
       data: {
         labels: ['Norte', 'Leste', 'Sul', 'Oeste'],
@@ -237,9 +266,13 @@ if (data.values2) {
   chartpress.data.labels = data.labels2.slice(-maxDataPoints);
   chartpress.data.datasets[0].data = data.values2.slice(-maxDataPoints);
 }
-
 if (data.values8) {
-  windSpeedChart.data.datasets[0].data = data.values8.slice(-maxDataPoints);
+  chartvel.data.labels = data.labels8.slice(-maxDataPoints);
+  chartvel.data.datasets[0].data = data.values8.slice(-maxDataPoints);
+}
+
+if (data.values7) {
+  windSpeedChart.data.datasets[0].data = data.values7.slice(-maxDataPoints);
 }
 
           chart.update();
@@ -252,7 +285,7 @@ if (data.values8) {
     }
 
 
-    setInterval(updateWithData, 5000); 
+    setInterval(updateWithData, 10000); 
   </script>
      <script type="text/javascript">
 
