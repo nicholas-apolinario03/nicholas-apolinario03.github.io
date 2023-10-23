@@ -76,9 +76,9 @@ body {
 }
 
 .section_a h1 {
-    color: #006400ab;
+    color: #37a337;
     font-size: 5em;
-    font-family: sans-serif;
+    font-family: cursive;
     text-align: center;
 }
 
@@ -118,7 +118,7 @@ body {
 }
 
 .section_imgb img {
-    width: 70%;
+    width: 75%;
     margin: 2.5%;
 }
 
