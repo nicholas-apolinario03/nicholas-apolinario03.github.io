@@ -2,13 +2,14 @@
 <html>
 
 <head>
-  <title>Gráfico em Tempo Real</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="Graficos.css">
+  <title>Gráficos</title>
 </head>
 
 <body>
@@ -50,6 +51,7 @@
     </div>
   </center>
   <script>
+    let data1 = "";
     let dir_norte = 0;
     let dir_sul = 0;
     let dir_leste = 0;
@@ -252,7 +254,7 @@
         dataType: 'json',
         success: function (data) {
           const maxDataPoints = 20;
-
+          const maxwind = 1;
           if (data.values3) {
             chart.data.labels = data.labels3.slice(-maxDataPoints);
             chart.data.datasets[0].data = data.values3.slice(-maxDataPoints);
@@ -278,14 +280,37 @@
             chartvel.data.labels = data.labels8.slice(-maxDataPoints);
             chartvel.data.datasets[0].data = data.values8.slice(-maxDataPoints);
           }
-          const strings = data.values7;
-          strings.forEach(string => {
-            const numeros = string.split(',').map(Number);
-            dir_norte += numeros[0];
-            dir_sul += numeros[1];
-            dir_leste += numeros[2];
-            dir_oeste += numeros[3];
-          });
+          const strings = data.values7.slice(-maxwind);
+          const comp = data.labels7.slice(-maxwind);
+          console.log(data1);
+
+          // Função para verificar se dois arrays de strings são iguais
+          function arraysAreEqual(arr1, arr2) {
+            if (arr1.length !== arr2.length) {
+              return false;
+            }
+            for (let i = 0; i < arr1.length; i++) {
+              if (arr1[i] !== arr2[i]) {
+                return false;
+              }
+            }
+            return true;
+          }
+
+          if (!arraysAreEqual(data1, comp)) {
+            data1 = data.labels7.slice(-maxwind);
+            strings.forEach(string => {
+              const numeros = string.split(',').map(Number);
+              dir_norte += numeros[0];
+              dir_sul += numeros[1];
+              dir_leste += numeros[2];
+              dir_oeste += numeros[3];
+              const numeros2 = [dir_norte, dir_sul, dir_leste, dir_oeste];
+              windSpeedChart.data.datasets[0].data = numeros2;
+
+            });
+          }
+
 
 
           chart.update();
