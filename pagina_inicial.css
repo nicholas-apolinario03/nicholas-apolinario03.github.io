@@ -239,10 +239,9 @@ body {
        
     }
 
-    .section_imgb {
-        float: none;
-         width: 95%;
-    }
+  .section_imgb {
+    width: 95%;
+}
 
 
 }
