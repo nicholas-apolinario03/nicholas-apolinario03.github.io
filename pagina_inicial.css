@@ -224,16 +224,24 @@ body {
     .section_a {
         display: inline-block;
         width: 100%;
-        margin-left: 5%;
+        margin-left: 0px;
+        text-align: center;
     }
+    .section_a h1 {
+    font-size: 3em;
+}
+    .section_img {
+     margin-right: 0px;
 
     .section_b {
         width: 100%;
         margin-left: 0px;
+       
     }
 
     .section_imgb {
         float: none;
+         width: 95%;
     }
 
 
