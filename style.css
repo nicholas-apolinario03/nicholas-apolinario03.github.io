@@ -159,6 +159,63 @@ header{
     border-bottom: 4px solid;
     transform: skewY(-20deg);
 }
+
+@media (max-width: 1112px){
+    
+    .apresentacao{
+        width: 100%;
+    }
+    .titulo{
+       padding-top: 25%;
+       padding-left: 3%;
+    
+    
+    }
+    .conteudo{
+        color: aliceblue;
+        font-size: 3em;
+        padding-left: 3%;
+       
+        
+    }
+    .foto_nav{
+        display: none;
+    }
+    .linha{
+        width: 20%;
+    }
+    .h12{
+        margin: 1em;
+    }
+    .about{
+        width: 100%;
+    }
+    .img_header{
+        float: none;
+    }
+    header{
+        margin-bottom: 20%;
+        height: auto;
+    }
+    .trabalhos{
+        height: auto;
+        width: 100%;
+    }
+    .trab{
+        display: block;
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    .trab img{
+
+        width: 90%;
+        height: auto;
+
+    }
+
+}
+
+
 @media (max-width: 425px){
     .sm a{
         display: inline-block;
