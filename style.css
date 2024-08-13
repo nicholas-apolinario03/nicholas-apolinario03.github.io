@@ -161,7 +161,12 @@ header{
 }
 
 @media (max-width: 1112px){
-    
+    .logo{
+        width: 15%;
+    }
+    nav a{
+        margin-top: 4%;
+    }
     .apresentacao{
         width: 100%;
     }
