@@ -11,7 +11,7 @@ nav{
     background-color: #172c3d;
 }
   
-nav a{
+.nav_link{
     text-decoration: none;
     color: aliceblue;
     float: right;
@@ -95,7 +95,7 @@ header{
  text-align: justify;
  padding-top: 2%;
  margin-bottom: 5%;
- float: left;
+
 }
 .img_header{
  float: right;
@@ -167,15 +167,17 @@ header{
     }
     nav a{
         margin-top: 4%;
+        margin-right: 4%;
     }
     .principal{
         height: auto;
+        padding-bottom: 10%;
     }
     .apresentacao{
         width: 100%;
     }
     .titulo{
-       padding-top: 20%;
+       padding-top: 5%;
        padding-left: 3%;
     
     

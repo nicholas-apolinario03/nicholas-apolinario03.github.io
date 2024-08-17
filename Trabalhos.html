@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Trabalhos_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+    <link rel="shortcut icon" type="imagex/png" href="img/logo1.png">
+    
+    <title>Portfólio</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html"><img src="img/logo1.png" alt="" class="logo"></a>
+
+        <a class="nav_link" href="Currículo Nicholas Apolinário.pdf" target="_blank">Curriculo</a>
+        <a class="nav_link" href="#">Sobre</a>
+        <a class="nav_link" href="index.html">Home</a>
+    </nav>
+    <center>
+        <div class="header">
+            <div class="linha"></div><h1 class="h12">Meus Trabalhos</h1><div class="linha"></div>
+            <div class="gallery">
+                <h1 class="titulo_trab">Melinda Rodrigues</h1>
+
+                <div class="main-image" id="mainImage"></div>
+                <p class="texto_sites">
+                    Desenvolvi um site moderno e responsivo utilizando HTML, JavaScript e CSS, hospedado na Hostinger, com o objetivo de otimizar a experiência de compra de suplementos. 
+                    O site foi projetado para oferecer uma interface intuitiva e atraente, facilitando a navegação e a seleção de produtos. Com ênfase na usabilidade e na estética.
+                    A plataforma proporciona uma experiência de compra fluida e eficiente, apoiada por um backend robusto para garantir a segurança e a integridade dos dados. 
+                    A hospedagem na Hostinger assegura desempenho confiável e escalabilidade para suportar o crescimento contínuo do negócio.
+                </p>
+                <div class="thumbnails">
+                    <div class="thumbnail" onclick="changeImage(0)" style="background-image: url('img/melinda.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage(1)" style="background-image: url('img/melinda1.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage(2)" style="background-image: url('img/melinda2.jpeg'); background-size: 100% 100%;"></div>
+                </div>
+             
+            </div>
+            <div class="gallery">
+                <h1 class="titulo_trab">TechnoFarm</h1>
+
+                <div class="main-image" id="mainImage1"></div>
+                <p class="texto_sites">
+                   Este projeto acadêmico envolveu a criação de um site completo, desenvolvido utilizando uma combinação de tecnologias modernas. 
+                   O site foi construído com HTML, CSS e JavaScript para garantir uma interface de usuário rica e interativa, além de uma experiência visual atraente e responsiva.
+                   O backend foi construído com Node.js para fornecer um servidor eficiente que interage com o MongoDB Atlas, garantindo armazenamento seguro e escalável dos dados. 
+                   O projeto foi projetado para oferecer uma experiência de usuário robusta e um desempenho otimizado. Para explorar o site <a href="https://technofarming.github.io">Clique aqui</a>
+                </p>
+                <div class="thumbnails">
+                    <div class="thumbnail" onclick="changeImage1(0)" style="background-image: url('img/stardew.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage1(1)" style="background-image: url('img/stardew1.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage1(2)" style="background-image: url('img/stardew2.jpeg'); background-size: 100% 100%;"></div>
+                </div>
+             
+            </div>
+        </div>
+    </center>
+
+    <div class="footer">
+        <div class="sm">
+            <a href="https://www.facebook.com/nicholas.cipriano.12"> <i class="fab fa-facebook-f"></i> </a>
+            <a href="https://www.instagram.com/nicholascipriano/"> <i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/nicholas03/"> <i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/11991790412"> <i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+ <script>
+    const images = [ 'img/melinda.jpeg', 'img/melinda1.jpeg', 'img/melinda2.jpeg', ];
+    const images1 = [ 'img/stardew.jpeg', 'img/stardew1.jpeg', 'img/stardew2.jpeg', ];
+    const images2 = [ 'img/trab1.jpeg', 'img/trab2.jpeg', 'img/trab3.jpeg', ];
+
+    let currentIndex = 0;
+    const mainImage = document.getElementById('mainImage');
+    const mainImage2 = document.getElementById('mainImage1');
+    const mainImage3 = document.getElementById('mainImage2');
+
+
+    function changeImage(index) {
+        currentIndex = index;
+        mainImage.style.backgroundImage = `url(${images[index]})`;
+    }
+    function changeImage1(index) {
+        currentIndex = index;   
+        mainImage1.style.backgroundImage = `url(${images1[index]})`;
+    }
+    function changeImage2(index) {
+        currentIndex = index;   
+        mainImage2.style.backgroundImage = `url(${images2[index]})`;
+    }
+
+    function autoChangeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        currentIndex = (currentIndex + 1) % images1.length;
+        currentIndex = (currentIndex + 1) % images2.length;
+        changeImage(currentIndex);
+    }
+
+    changeImage(0);
+    changeImage1(0);
+    setInterval(autoChangeImage, 10000);
+ </script>
+</body>
+</html>
