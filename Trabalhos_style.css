@@ -48,3 +48,13 @@
 .thumbnail:hover {
     transform: scale(1.1);
 }
+@media (max-width: 1112px){
+ 
+    .thumbnails{
+        display: none;
+    }
+    .main-image{
+        float: none;
+        width: 100%;
+    }
+}
