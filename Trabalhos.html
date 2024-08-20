@@ -81,25 +81,33 @@
         currentIndex = index;
         mainImage.style.backgroundImage = `url(${images[index]})`;
     }
-    function changeImage1(index) {
-        currentIndex = index;   
-        mainImage1.style.backgroundImage = `url(${images1[index]})`;
+    function changeImage1(index1) {
+        currentIndex1 = index1;   
+        mainImage1.style.backgroundImage = `url(${images1[index1]})`;
     }
-    function changeImage2(index) {
-        currentIndex = index;   
-        mainImage2.style.backgroundImage = `url(${images2[index]})`;
+    function changeImage2(index2) {
+        currentIndex2 = index2;   
+        mainImage2.style.backgroundImage = `url(${images2[index2]})`;
     }
 
     function autoChangeImage() {
         currentIndex = (currentIndex + 1) % images.length;
-        currentIndex = (currentIndex + 1) % images1.length;
-        currentIndex = (currentIndex + 1) % images2.length;
+        currentIndex1 = (currentIndex + 1) % images1.length;
+        currentIndex2 = (currentIndex + 1) % images2.length;
         changeImage(currentIndex);
+        changeImage1(currentIndex1);
+        changeImage2(currentIndex2);
     }
 
     changeImage(0);
     changeImage1(0);
-    setInterval(autoChangeImage, 10000);
+   
+    if (window.innerWidth < 550) { 
+        setInterval(autoChangeImage, 5000);
+    }
+    else{
+        setInterval(autoChangeImage, 10000);
+    }
  </script>
 </body>
 </html>
