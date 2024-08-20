@@ -55,6 +55,23 @@
                 </div>
              
             </div>
+            <div class="gallery">
+                <h1 class="titulo_trab">AtCloud</h1>
+
+                <div class="main-image" id="mainImage2"></div>
+                <p class="texto_sites">
+                    Este projeto acadêmico envolveu a criação de um site completo. 
+                    O site foi construído utilizando HTML, CSS e JavaScript para proporcionar uma interface de usuário rica, interativa e visualmente atraente, além de responsiva. 
+                    O banco de dados Firebase foi utilizado para garantir armazenamento seguro e escalável dos dados, e a biblioteca Chart.js foi implementada para gerar gráficos em tempo real, oferecendo uma visualização dinâmica das informações. 
+                    O projeto foi planejado para oferecer uma experiência de usuário robusta e desempenho otimizado. Para explorar o site, <a href="atcloud2023.github.io">Clique aqui</a>
+                </p>
+                <div class="thumbnails">
+                    <div class="thumbnail" onclick="changeImage1(0)" style="background-image: url('img/atcloud.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage1(1)" style="background-image: url('img/atcloud1.jpeg'); background-size: 100% 100%;"></div>
+                    <div class="thumbnail" onclick="changeImage1(2)" style="background-image: url('img/atcloud2.jpeg'); background-size: 100% 100%;"></div>
+                </div>
+             
+            </div>
         </div>
     </center>
 
@@ -69,7 +86,7 @@
  <script>
     const images = [ 'img/melinda.jpeg', 'img/melinda1.jpeg', 'img/melinda2.jpeg', ];
     const images1 = [ 'img/stardew.jpeg', 'img/stardew1.jpeg', 'img/stardew2.jpeg', ];
-    const images2 = [ 'img/trab1.jpeg', 'img/trab2.jpeg', 'img/trab3.jpeg', ];
+    const images2 = [ 'img/atcloud.jpeg', 'img/atcloud1.jpeg', 'img/atcloud2.jpeg', ];
 
     let currentIndex = 0;
     const mainImage = document.getElementById('mainImage');
@@ -101,9 +118,10 @@
 
     changeImage(0);
     changeImage1(0);
+    changeImage2(0);
    
     if (window.innerWidth < 550) { 
-        setInterval(autoChangeImage, 5000);
+        setInterval(autoChangeImage, 3000);
     }
     else{
         setInterval(autoChangeImage, 10000);
