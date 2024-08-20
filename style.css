@@ -162,9 +162,11 @@ header{
 
 @media (max-width: 1112px){
     
+ 
     .logo{
-        width: 15%;
+        width: 8%;
     }
+
     nav a{
         margin-top: 4%;
         margin-right: 4%;
@@ -226,7 +228,19 @@ header{
 
 }
 
+@media (max-width: 550px) {
 
+    .logo{
+        width: 15%;
+    }
+    .linha{
+        width: 15%;
+    }
+    .h12{
+        margin: 1em;
+    }
+    
+}
 @media (max-width: 425px){
     .sm a{
         display: inline-block;
