@@ -233,6 +233,9 @@ header{
     .logo{
         width: 15%;
     }
+    .nav_link{
+        margin-top: 4%;
+    }
     .linha{
         width: 15%;
     }
