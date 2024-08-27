@@ -165,11 +165,13 @@ header{
  
     .logo{
         width: 8%;
+        margin-top: 2%;
     }
 
     nav a{
-        margin-top: 4%;
+        margin-top: 6%;
         margin-right: 4%;
+        padding-top: 2%;
     }
     .principal{
         height: auto;
@@ -241,6 +243,9 @@ header{
     }
     .h12{
         margin: 1em;
+    }
+    .about{
+        text-align: center;
     }
     
 }
