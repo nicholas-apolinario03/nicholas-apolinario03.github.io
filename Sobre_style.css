@@ -121,3 +121,15 @@
 .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+@media (max-width: 550px) {
+    .sobre_mim{
+        width: 80%;
+    }
+    .texto_sobre_mim{
+        text-align:center;
+        
+    }
+    .slide img {
+        width: 80%;
+    }
+}
