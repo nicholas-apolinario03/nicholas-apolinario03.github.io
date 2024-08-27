@@ -237,6 +237,8 @@ header{
     }
     .nav_link{
         margin-top: 4%;
+	font-size: 22px;
+        margin-right: 4%;
     }
     .linha{
         width: 15%;
