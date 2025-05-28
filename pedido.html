@@ -23,6 +23,7 @@ async function buscarPedido() {
 
     if (response.ok) {
         document.getElementById('resultado').innerHTML = `
+        console.log(data.id)
             <h3>Pedido ${data.id}</h3>
             <p><b>Status:</b> ${data.status}</p>
             <p><b>Comprador:</b> ${data.buyer.nickname}</p>
