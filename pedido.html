@@ -1,0 +1,33 @@
+<button onclick="buscarPedido()">Buscar Pedido</button>
+<div id="resultado"></div>
+
+<script>
+async function buscarPedido() {
+    const orderId = prompt("Digite o número do pedido:");
+
+    if (!orderId) {
+        alert("Por favor, digite o número do pedido.");
+        return;
+    }
+
+    const response = await fetch(`https://seu-projeto.vercel.app/api/pedido?order_id=${orderId}`);
+    const data = await response.json();
+
+    if (response.ok) {
+        document.getElementById('resultado').innerHTML = `
+            <h3>Pedido ${data.id}</h3>
+            <p><b>Status:</b> ${data.status}</p>
+            <p><b>Comprador:</b> ${data.buyer.nickname}</p>
+            <p><b>Data:</b> ${new Date(data.date_created).toLocaleString()}</p>
+            <p><b>Itens:</b></p>
+            <ul>
+                ${data.order_items.map(item => `<li>${item.item.title} - ${item.quantity}x</li>`).join('')}
+            </ul>
+        `;
+    } else {
+        document.getElementById('resultado').innerHTML = `
+            <p style="color:red;">Erro: ${data.error || "Erro desconhecido."}</p>
+        `;
+    }
+}
+</script>
