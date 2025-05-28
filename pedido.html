@@ -22,8 +22,9 @@ console.log(orderId)
     const data = await response.json();
 
     if (response.ok) {
+         console.log(data.id)
         document.getElementById('resultado').innerHTML = `
-        console.log(data.id)
+       
             <h3>Pedido ${data.id}</h3>
             <p><b>Status:</b> ${data.status}</p>
             <p><b>Comprador:</b> ${data.buyer.nickname}</p>
