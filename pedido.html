@@ -82,7 +82,7 @@
         mostrarLista(); // Garante que a lista está visível
 
         try {
-            const response = await fetch(`${API_BASE_URL}/pedidos/listar?seller_id=${sellerId}`);
+            const response = await fetch(`${API_BASE_URL}/listar?seller_id=${sellerId}`);
             const data = await response.json();
 
             if (response.ok) {
@@ -128,7 +128,7 @@
 
         try {
             // Usa a nova rota /api/pedidos/[order_id]
-            const response = await fetch(`${API_BASE_URL}/pedidos/${orderId}`);
+            const response = await fetch(`${API_BASE_URL}/${orderId}`);
             const data = await response.json();
 
             if (response.ok) {
