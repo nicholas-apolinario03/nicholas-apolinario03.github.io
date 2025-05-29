@@ -3,43 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pedidos do Mercado Livre</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .pedido-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+        .pedido-item:hover {
+            background-color: #e9e9e9;
+        }
+        #detalhesPedido {
+            border: 1px solid #007bff;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #e0f0ff;
+        }
+        #detalhesPedido h3 {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="buscarPedido()">Buscar Pedido</button>
-<div id="resultado"></div>
+
+    <h1>Gerenciamento de Pedidos</h1>
+
+    <button onclick="buscarListaPedidos()">Listar Todos os Pedidos</button>
+    <input type="text" id="sellerIdInput" placeholder="Digite o ID do Vendedor" value="SEU_ID_DO_VENDEDOR_AQUI">
+    <div id="listaPedidos"></div>
+
+    <div id="detalhesPedido" style="display: none;">
+        <h2>Detalhes do Pedido <span id="pedidoIdDetalhes"></span></h2>
+        <div id="resultadoDetalhes"></div>
+        <button onclick="voltarParaLista()">Voltar para a Lista</button>
+    </div>
 
 <script>
-async function buscarPedido() {
-    const orderId = prompt("Digite o número do pedido:");
+    const API_BASE_URL = 'https://SEU_DOMINIO_VERCEL.vercel.app/api'; // <--- ATUALIZE COM SEU DOMÍNIO VERDADEIRO DA VERCELL!
 
-    if (!orderId) {
-        alert("Por favor, digite o número do pedido.");
-        return;
+    // Funções para manipular a visualização
+    function mostrarLista() {
+        document.getElementById('listaPedidos').style.display = 'block';
+        document.getElementById('detalhesPedido').style.display = 'none';
+        document.querySelector('h1').style.display = 'block';
+        document.querySelector('button').style.display = 'inline-block';
+        document.getElementById('sellerIdInput').style.display = 'inline-block';
+        window.history.pushState(null, '', window.location.pathname); // Limpa o hash da URL
     }
-console.log(orderId)
-    const response = await fetch(`https://modus-sage.vercel.app/api/pedidos?order_id=${orderId}`);
-    const data = await response.json();
 
-    if (response.ok) {
-         console.log(data.id)
-        document.getElementById('resultado').innerHTML = `
-       
-            <h3>Pedido ${data.id}</h3>
-            <p><b>Status:</b> ${data.status}</p>
-            <p><b>Comprador:</b> ${data.buyer.nickname}</p>
-            <p><b>Data:</b> ${new Date(data.date_created).toLocaleString()}</p>
-            <p><b>Itens:</b></p>
-            <ul>
-                ${data.order_items.map(item => `<li>${item.item.title} - ${item.quantity}x</li>`).join('')}
-            </ul>
-        `;
-    } else {
-        document.getElementById('resultado').innerHTML = `
-            <p style="color:red;">Erro: ${data.error || "Erro desconhecido."}</p>
-        `;
+    function mostrarDetalhes() {
+        document.getElementById('listaPedidos').style.display = 'none';
+        document.getElementById('detalhesPedido').style.display = 'block';
+        document.querySelector('h1').style.display = 'none'; // Esconde o título principal
+        document.querySelector('button').style.display = 'none'; // Esconde o botão de listar
+        document.getElementById('sellerIdInput').style.display = 'none';
     }
-}
+
+    function voltarParaLista() {
+        mostrarLista();
+        // Limpar o conteúdo dos detalhes ao voltar
+        document.getElementById('resultadoDetalhes').innerHTML = '';
+        document.getElementById('pedidoIdDetalhes').textContent = '';
+    }
+
+    // Função para buscar a lista de pedidos
+    async function buscarListaPedidos() {
+        const sellerId = document.getElementById('sellerIdInput').value;
+
+        if (!sellerId) {
+            alert("Por favor, digite o ID do vendedor.");
+            return;
+        }
+
+        document.getElementById('listaPedidos').innerHTML = '<p>Carregando lista de pedidos...</p>';
+        mostrarLista(); // Garante que a lista está visível
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/pedidos/listar?seller_id=${sellerId}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                if (data.results && data.results.length > 0) {
+                    let htmlLista = '<h2>Pedidos Encontrados:</h2>';
+                    data.results.forEach(pedido => {
+                        htmlLista += `
+                            <div class="pedido-item" onclick="buscarDetalhesPedido('${pedido.id}')">
+                                <h3>Pedido ${pedido.id}</h3>
+                                <p>Status: <b>${pedido.status}</b></p>
+                                <p>Comprador: ${pedido.buyer.nickname}</p>
+                                <p>Data: ${new Date(pedido.date_created).toLocaleString()}</p>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('listaPedidos').innerHTML = htmlLista;
+                } else {
+                    document.getElementById('listaPedidos').innerHTML = '<p>Nenhum pedido encontrado para este vendedor.</p>';
+                }
+            } else {
+                document.getElementById('listaPedidos').innerHTML = `
+                    <p style="color:red;">Erro ao listar pedidos: ${data.error || "Erro desconhecido."}</p>
+                    <p style="color:red;">Mensagem da API: ${data.message ? JSON.stringify(data.message) : 'N/A'}</p>
+                `;
+            }
+        } catch (error) {
+            console.error('Erro na requisição da lista de pedidos:', error);
+            document.getElementById('listaPedidos').innerHTML = `
+                <p style="color:red;">Erro de conexão ao listar pedidos: ${error.message}</p>
+            `;
+        }
+    }
+
+    // Função para buscar detalhes de um pedido específico
+    async function buscarDetalhesPedido(orderId) {
+        document.getElementById('resultadoDetalhes').innerHTML = '<p>Carregando detalhes do pedido...</p>';
+        document.getElementById('pedidoIdDetalhes').textContent = orderId;
+        mostrarDetalhes(); // Garante que a seção de detalhes está visível
+
+        // Atualiza a URL do navegador com o ID do pedido (opcional, mas legal para navegação)
+        window.history.pushState(null, '', `#pedido-${orderId}`);
+
+
+        try {
+            // Usa a nova rota /api/pedidos/[order_id]
+            const response = await fetch(`${API_BASE_URL}/pedidos/${orderId}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById('resultadoDetalhes').innerHTML = `
+                    <p><b>Status:</b> ${data.status}</p>
+                    <p><b>Comprador:</b> ${data.buyer.nickname}</p>
+                    <p><b>Data:</b> ${new Date(data.date_created).toLocaleString()}</p>
+                    <p><b>Itens:</b></p>
+                    <ul>
+                        ${data.order_items.map(item => `<li>${item.item.title} - ${item.quantity}x</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                document.getElementById('resultadoDetalhes').innerHTML = `
+                    <p style="color:red;">Erro ao buscar detalhes: ${data.error || "Erro desconhecido."}</p>
+                    <p style="color:red;">Mensagem da API: ${data.message ? JSON.stringify(data.message) : 'N/A'}</p>
+                `;
+            }
+        } catch (error) {
+            console.error('Erro na requisição dos detalhes do pedido:', error);
+            document.getElementById('resultadoDetalhes').innerHTML = `
+                <p style="color:red;">Erro de conexão ao buscar detalhes: ${error.message}</p>
+            `;
+        }
+    }
+
+    // Lógica para carregar detalhes do pedido se a URL já tiver um hash (ex: #pedido-123)
+    document.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+        if (hash.startsWith('#pedido-')) {
+            const orderIdFromHash = hash.substring(8); // Remove '#pedido-'
+            buscarDetalhesPedido(orderIdFromHash);
+        } else {
+            mostrarLista(); // Mostra a lista por padrão se não houver hash
+        }
+    });
+
 </script>
 
 </body>
