@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Este código deve ser executado no seu index.html
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Pega os parâmetros da URL
+    const params = new URLSearchParams(window.location.search);
+    const authCode = params.get('code');
+
+    // 2. Verifica se o código existe
+    if (authCode) {
+        console.log('Código de autorização encontrado:', authCode);
+        
+        // 3. Envia o código para o seu servidor Node.js
+        sendCodeToServer(authCode);
+
+    } else {
+        console.log('Nenhum código de autorização encontrado na URL.');
+        // Se não houver código, o usuário pode não ter autorizado o aplicativo
+        // ou a página foi acessada sem o redirecionamento do Mercado Livre.
+    }
+});
+
+// Função para enviar o código para o seu servidor local
+function sendCodeToServer(code) {
+    // URL do seu servidor local (localhost:3000)
+    const serverUrl = 'http://localhost:3000/mercadolivre/token';
+
+    fetch(serverUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: code })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Falha na requisição ao servidor.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Token de acesso recebido do servidor:', data);
+        alert('Autenticação com o Mercado Livre concluída!');
+        // Aqui você pode redirecionar para a sua página de monitoramento
+        // window.location.href = '/painel.html';
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
+    </script>
+</body>
+</html>
