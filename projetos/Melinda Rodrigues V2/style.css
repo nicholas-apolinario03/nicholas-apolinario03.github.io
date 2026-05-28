@@ -1,0 +1,710 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family:  'Times New Roman', Times, serif;
+}
+.textspg{
+  margin: 30px;
+
+}
+nav{
+  height: 100px;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+  background: #6ab04c;
+}
+.home{
+  float: right;
+    margin-top: 2.5%;
+    width: 3%;
+    margin-right: 3%;
+}
+.logo{
+  background: url(img/m.png) no-repeat 100% 100%;
+  background-size: contain;
+  width: 252px;
+  height: 78px;
+  float: left;
+  margin: 10px;
+}
+
+
+header{
+  width: 100%;
+  height: 550px;
+  background-size: contain;
+  display: inline-block;
+  margin-top: 0px;  
+  position: relative;
+  overflow: hidden;
+}
+.slide  {
+  width: 100%;
+  height: 550px;
+  position: absolute;
+  transition: all 0.5s;
+}
+.slide img {
+    margin-top:-5px;
+  width: 100%;
+  height: 550px;
+  display: inline-block;
+}
+.btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 18px;
+}
+  
+.btn:active {
+  transform: scale(1.1);
+}
+  
+.btn-ant {
+  top: 45%;
+  left: 2%;
+}
+  
+.btn-prox {
+  top: 45%;
+  right: 2%;
+}
+.cards button{
+  width: 457px;
+  height: 70px;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: -10px;
+  margin-left: -7px;
+  margin-right: -7px;
+}
+.btn-produto1{
+  background: rgb(255 139 63);
+}
+.btn-produto2{
+  background: rgb(211 75 139);
+}
+.btn-produto3{
+  background-color: rgb(22 22 22);    
+}
+.card{
+  background: #d8d0d0;
+  width: 100%;
+  height: 735px;
+  margin-top: -40px;
+}
+.card h1{
+  margin: 0px;
+  margin-left: 65px;
+  padding-top: 40px;
+  text-align: left;
+  font-size:50px; 
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 60px;
+  margin-bottom:25px;
+}
+
+.card h3{
+  display: inline-block;
+  margin-right: 15px;
+  margin-left: 70px;
+  margin-bottom: 60px;
+  text-align: left;
+  width: 180px;
+}
+.linha1{
+  display: inline-block;
+  height: 80px;
+  border: 1px solid #000;
+  margin-bottom: -15px;
+}
+.cardimg{
+    width: 29%;
+   
+    margin-right: 125px;
+    float: right;
+    margin-top: -12rem;
+}
+.cardimg1{
+    width: 29%;
+    margin-right: 125px;
+    float: right;
+    margin-top: -12rem;
+}
+.det{
+  background: #ff7011;
+  width: 100%;
+  margin: 0px;
+  height: 350px;
+}
+.det1{
+  margin-top:12px;
+
+}
+.det img{
+  margin: 20px;
+  width: 55%;
+  margin-top: -50px;
+  margin-left: 10px;
+}
+.det a{
+    text-decoration:none;
+}
+.det input{
+  width: 30%;
+  height: 70px;
+  border-radius: 10px;
+  background-color: #6ab04c;
+  color: #fff;
+  font-size: 20px;
+  display: block;
+  border: none;
+  margin-top: 5px;
+  margin-right: 380px;
+}
+
+.card2{
+   display:none;
+}
+.card3{
+
+  display: none;
+}
+.card3 h1, .card3 h3{
+    color:black;
+}
+.linha2{
+  display: inline-block;
+  height: 80px;
+  border: 1px solid #000;
+  margin-bottom: -15px;
+}
+.img-quebra{
+    width:60%;
+    margin-top: 5px;
+    margin-left: 255px;
+}
+.produtos{
+  margin: 8.7%;
+  margin-bottom: -16px;
+  margin-top: -40px;
+    
+}
+.produto{
+  width: 580px;
+  height: 450px;
+  display: inline-table;
+  background-color: #fff;
+  margin:20px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+.produto center{
+  background: #000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 65px;
+}
+.produto h2{
+  margin-top: -2px;
+  font-size: 145%;
+  color: #fff;
+  padding: 10px;
+}
+.text-frete{
+  margin-top: 0px;
+  background-color: #6ab04c;
+  color: #fff;
+  text-align: center;
+  font-size: 100%;
+  height: 25px;
+  width: 150px;
+  border-bottom-right-radius: 10px;
+  
+}
+.text-brinde{
+  margin-top: -41px;
+  background-color: #6ab04c;
+  color: #fff;
+  text-align: center;
+  font-size: 100%;
+  height: 25px;
+  width: 190px;
+  border-bottom-left-radius: 10px;
+  float: right;
+ 
+  
+}
+.text-desc{
+  margin-top: -41px;
+  color: #000;
+  text-align: center;
+  font-size: 100%;
+  height: 25px;
+  width: 150px;
+  border-bottom-left-radius: 10px;
+  float: right;
+  background-color:yellow;
+   margin-right:160px;
+  
+}
+.text-desc1 {
+    margin-top: -41px;
+    color: #000;
+    text-align: center;
+    font-size: 100%;
+    height: 25px;
+    width: 150px;
+    border-bottom-left-radius: 10px;
+    float: right;
+    background-color: yellow;
+}
+
+.produto-img{
+  height: 285px;
+  width: 328px;
+}
+.brinde{
+  display: flex;
+  width: 200px;
+  margin-top: -169px;
+}
+.produto-img1{
+  height: 300px;
+  width: 300px;
+}
+.kit3-img{
+  height: 285px;
+  width: 328px;
+}
+.produto h4{
+  display: inline-block;
+  margin-top: 85px;
+  position: absolute;
+  line-height: 25px;
+  font-size: 100%;
+  margin-left: 20px;
+}
+.produto .produth1{
+    margin-top: -165px;
+    margin-left: 320px;
+}
+.produto h1{
+  font-size: 200%;
+  position: absolute;
+  margin-top: -150px;
+  margin-left: 345px;
+}
+
+.produto h5{
+    display: inline-block;
+    margin-top: 180px;
+    position: absolute;
+    line-height: 25px;
+    font-size: 100%;
+    margin-left: 20px;
+}
+.produto a{
+  text-decoration: none;
+}
+.produto input{
+  width: 250px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: #6ab04c;
+  color: #fff;
+  font-size: 20px;
+  margin-left: 280px;
+  border: none;
+  position: relative;
+  display: block;
+  margin-top: -55px;
+}
+.produto .produtinput{
+    margin-top: -70px;
+}
+.imgfinal{
+    width: 100%;
+    height: 420px;
+}
+footer{
+  width: 100%;
+  height: 350px;
+  background-color: #6ab04c;
+  margin-top: -4px
+}
+footer h3, footer h4{
+  color: #fff;
+}
+.mr1{
+  margin-left: 50px;
+  display: inline-block;
+}
+.mrs{
+    display:none;
+}
+.links{
+  
+  float: right;
+  margin-right: 3rem;
+}
+.mr h3{
+  font-size:30px;
+  margin-top: 22px;
+  margin-bottom: 12PX;
+}
+.mr h4{
+  margin-top: 0px;
+ font-size:20px;
+ line-height:30px;
+}
+.links h3{
+  font-size:30px;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  margin-left: 25px;
+}
+.link{
+  color: #fff;
+  margin-left: 40px;
+  display: block;
+  font-size:20px;
+}
+footer center{
+  margin: 40px;
+  margin-top: 70px;
+}
+footer img{
+    width: 30%;
+    display: flex;
+    margin-left: 465px;
+}
+.mercadop{
+  margin-top: -15%;
+}
+.escondido{
+    display:none;
+}
+.rs a{
+  display: inline-block;
+  font-size: 25px;
+  width: 73px;
+  height: 73px;
+  line-height: 80px;
+  text-align:center ;
+  color: #fff ;
+  margin: 0 1px;
+  transition: .2s linear;
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+.rs a::before, .rs a::after{
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  left: 0;
+  top: 0;
+  transition: .2s linear;
+} 
+.rs a:hover{
+  transform: scale(.8);
+}
+.rs a:hover::before{
+  border-left: 4px solid;
+  border-right: 4px solid;
+  transform: skewX(20deg);
+}
+.rs a:hover::after{
+  border-top: 4px solid;
+  border-bottom: 4px solid;
+  transform: skewY(-20deg);
+}
+.cards button:hover, .det input:hover, .produto input:hover{
+	-webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);  
+}
+@media (max-width: 1440px){
+    .produtos {
+    margin: 3.7%;
+    margin-bottom: -16px;
+    margin-top: -40px;
+    }
+}
+@media (max-width: 1365px){
+ .produtos{
+    margin-left: 25%;
+    margin-right: 0px;
+ }
+}
+@media (max-width: 950px){
+  header{
+    height: 280px;
+  }
+  .slide img {
+      margin-top:0px;
+    width: 99.7%;
+    height: 220px;
+    display: inline-block;
+    
+  }
+  .cards{
+    margin-top: -70px;
+  }
+  .card{
+    height: 775px;
+  }
+  .card h1 {
+    margin: 0px;
+    margin-left: 5px;
+    padding-top: 40px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -2.5px;
+    line-height: 60px;
+    margin-bottom: 25px;
+}
+.cardimg1 {
+    width: 36%;
+    margin-right: -1px;
+    float: right;
+    margin-top: -19rem;
+}
+  .cardimg {
+    width: 36%;
+    margin-right: 4px;
+    float: right;
+    margin-top: -20rem;
+  }
+.card h3 {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 40px;
+    margin-bottom: 45px;
+    text-align: left;
+    width: 60px;
+    font-size: 13px;
+}
+
+  .det input{
+   display: block;
+    width: 50%;
+    margin-right: 0px;
+  }
+  .det img{
+    margin:0px;
+   width: 100%;
+    margin-top: 4px;
+    margin-left: -2px;
+  }
+  
+  .cards button{
+    margin: 0px;
+    width: 100%;
+  }
+  .cards button:hover, .det input:hover, .produto input:hover{
+	-webkit-transform: scale(1.0);
+  -moz-transform: scale(1.0);
+  -o-transform: scale(1.0);
+  -ms-transform: scale(1.0);
+  transform: scale(1.0);  
+}
+  .img-quebra {
+    width: 100%;
+    margin-top: -55px;
+    margin-left: 0px;
+}
+  .produtos{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .produto {
+    width: 90%;
+    height: 430px;
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.produto h2 {
+    margin-top: -2px;
+    font-size: 100%;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+.text-frete{
+    margin-top: 0px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 80%;
+    height: 25px;
+    width: 30%;
+    border-bottom-right-radius: 10px;
+  
+}
+.text-brinde{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 80%;
+    height: 30px;
+    width: 30%;
+    border-bottom-left-radius: 10px;
+    float: right;
+    margin-top: -43px;
+    margin-left: 50px;
+}
+.text-desc{
+    margin-right: 80px;
+    margin-top: -37px;
+}
+
+  
+.produto-img {
+  margin-top: 40px;
+  width: 65%;
+  height: 220px;
+  margin-left: -5px;
+}
+.brinde {
+    width: 35%;
+    margin-top: -117px;
+}
+.produto-img1 {
+  height: 300px;
+  width: 250px;
+  margin-left: -35px;
+}
+
+.produto h4 {
+  display: inline-block;
+  margin-top: 95px;
+  position: absolute;
+  line-height: 25px;
+  font-size: 100%;
+  margin-left: -2px;
+
+}
+.produto h1 {
+    font-size: 150%;
+    position: absolute;
+    margin-top: -115px;
+    margin-left: 54%;
+}
+.produto .produth1{
+    font-size: 150%;
+    position: absolute;
+  margin-top: -150px;
+    margin-left: 54%;
+    line-height: 25px
+}
+
+.produto h5{
+   margin-top: 175px;
+    margin-left: -38px;
+    width: 160px;
+    text-align:center;
+}
+.produto .produth5 {
+   margin-top: 180px;
+    margin-left: -15px;
+    width: 155px;
+    text-align: center;
+    line-height: 20px;
+}
+.produto input {
+    width: 35%;
+    height: 15%;
+    border-radius: 10px;
+    background-color: rgb(106, 176, 76);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-left: 50%;
+    border: none;
+    position: relative;
+    display: block;
+    margin-top: -40px;
+}
+.rs a{
+    width:40px;
+}
+.rs a:hover{
+  transform: scale(.4);
+}
+.rs a:hover::before{
+  border-left: 2px solid;
+  border-right: 2px solid;
+  transform: skewX(10deg);
+}
+.rs a:hover::after{
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  transform: skewY(-10deg);
+}
+.imgfinal {
+    height: 225px;
+}
+footer{
+  height: auto;
+  margin-bottom: -55px;
+  margin-top:-15px;
+}
+.mr1{
+    display:none;
+}
+.mrs{
+    display:block;
+    margin-left:10px;
+}
+.mr h4 {
+    margin-top: 0px;
+    font-size: 19px;
+    line-height: 26px;
+}
+.links{
+  float: none;
+}
+.links h3{
+    margin-left: 10px;
+}
+.link{
+    margin-left:10px;
+    }
+.escondido{
+     width:100%;
+      margin-left: 0px;
+      display:block;
+}
+footer img{
+    width:100%;
+     display: none;
+    margin-left: 0px;
+    margin-top:10px;
+}
+}
+@media (max-width: 650px){
+  .produtos{
+    margin-top: 0px;
+  }
+  .produto input {
+    width: 45%;
+    height: 15%;
+}
+}
